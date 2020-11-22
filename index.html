@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avito Test Case</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="main-wrapper">
+        <div class="container">
+            <div class="wrapper">
+                <form class="redactor">
+                    <div class="input-box">
+                        <label for="bannerText">Введите текст под баннером</label>
+                        <textarea class="redactor__input-text" type="text" name="bannerText"></textarea>
+                    </div>
+    
+                    <div class="input-box">
+                        <input class="redactor__input-file" type="file" name="bannerImg" accept="image/gif, image/jpeg, image/png">
+                    </div>
+    
+                    <div class="input-box">
+                        <label for="bannerColor">Введите цвет в формате HEX (#ffffff или #fff)</label>
+                        <input class="redactor__input-color" type="text" name="bannerColor" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$">
+                    </div>
+                    
+                    <input type="submit" value="Создать баннер">
+                </form>
+    
+                <div class="banner">
+                    <a href="#">
+                        <picture class="banner__picture">
+                            <img class="banner__picture__img" src="banner.png" alt="banner">
+                        </picture>
+    
+                        <p class="banner__text">Присоединяйся к Авито и открой для себя самый большой маркетплейс в России!</p>
+                    </a>
+                </div>
+            </div>
+            <div class="controls">
+                <div class="container">
+                    <input type="button" class="controls__copy-html" value="скопировать HTML">
+        
+                    <input type="button" class="controls__copy-json" value="скопировать JSON">
+        
+                    <a class="controls__download-picture" href="banner.png" download="banner.png">  <!-- в href вставить ссылку на картинку, расположенную на сервере -->
+                        <input type="button" value="Скачать картинку" >
+                    </a>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+
+    
+
+    <div class="hiddenCanvas hidden"></div>
+</body>
+<script src="html2canvas.min.js"></script>
+<script src="script.js"></script>
+</html>
