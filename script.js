@@ -39,7 +39,7 @@ function awaitForCanvas(bannerImage){
     return new Promise(function(resolve){
         // Если FileReader поддерживается
         if (FileReader) {
-            var fr = new FileReader();
+            let fr = new FileReader();
             fr.onload = function () {
                 document.querySelector('.banner__picture__img').src = fr.result;  
                 resolve();
@@ -105,11 +105,11 @@ function copyHtml(){
 
 
 function copyJson(){
-    var html = banner.outerHTML;       
-    var data = { html: html }; 
+    const html = banner.outerHTML;       
+    const data = { html: html }; 
 
     // Для хранения в JSON
-    var json = JSON.stringify(data);
+    let json = JSON.stringify(data);
     
 
     copyToClipboard(json)
@@ -117,8 +117,6 @@ function copyJson(){
 
 // Для дальнешей работы с JSON
 function htmlToJson(div){
-    let obj=[];
-
     let tag = {};
     tag['tagName']=div.tagName;
     tag['children'] = [];
@@ -129,7 +127,8 @@ function htmlToJson(div){
        let attr= div.attributes[i];
        tag['@'+attr.name] = attr.value;
     }
-    return tag;   
+    let json = JSON.stringify(data); 
+    copyToClipboard(json)
 }
 
 const redactorForm = document.querySelector('.redactor');
