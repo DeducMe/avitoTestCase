@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avito Test Case</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="css/global.css">
+    <link rel="stylesheet" href="css/normalize.css">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="fonts/montserrat/RobotoMono.css">
+    
 </head>
 <body>
     <div class="main-wrapper">
@@ -25,7 +29,7 @@
                         <input class="redactor__input-color" type="text" name="bannerColor" pattern="^#+([a-fA-F0-9]{6}|[a-fA-F0-9]{3})$">
                     </div>
                     
-                    <input type="submit" value="Создать баннер">
+                    <input class="redactor__submit" type="submit" value="Создать баннер">
                 </form>
     
                 <div class="banner">
@@ -40,12 +44,12 @@
             </div>
             <div class="controls">
                 <div class="container">
-                    <input type="button" class="controls__copy-html" value="скопировать HTML">
+                    <input type="button" class="control-btn controls__copy-html" value="скопировать HTML">
         
-                    <input type="button" class="controls__copy-json" value="скопировать JSON">
+                    <input type="button" class="control-btn controls__copy-json" value="скопировать JSON">
         
-                    <a class="controls__download-picture" href="banner.png" download="banner.png">  <!-- в href вставить ссылку на картинку, расположенную на сервере -->
-                        <input type="button" value="Скачать картинку" >
+                    <a class="control-btn controls__download-picture" href="banner.png" download="banner.png">  <!-- в href вставить ссылку на картинку, расположенную на сервере -->
+                        <input class="checkout" type="button" value="Скачать картинку" >
                     </a>
                 </div>
             </div>

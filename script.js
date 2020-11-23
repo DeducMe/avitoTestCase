@@ -2,6 +2,11 @@ let banner = document.querySelector('.banner');
 
 let preview = document.querySelector('.hiddenCanvas');
 let getCanvas;
+html2canvas(banner).then(function (canvas) {
+    preview.innerHTML = '';
+    preview.append(canvas);
+    getCanvas = canvas;
+})
 
 function copyToClipboard(text) {
     let textArea = document.createElement('textarea');
@@ -62,28 +67,24 @@ function updateBanner(event){
 
     document.querySelector('.banner__text').textContent = bannerText;
     banner.style.backgroundColor = bannerColor;
-
-    awaitForCanvas(bannerImage).then(function(){
-        html2canvas(banner).then(function (canvas) {
-            preview.innerHTML = '';
-            preview.append(canvas);
-            getCanvas = canvas;
+    if (bannerImage){
+        awaitForCanvas(bannerImage).then(function(){
+            html2canvas(banner).then(function (canvas) {
+                preview.innerHTML = '';
+                preview.append(canvas);
+                getCanvas = canvas;
+            })
         })
-    })
+    }
 }
 
 
-function proceedImage(){
-    
-    let imageData = getCanvas.toDataURL('image/png');
-    let newData = imageData.replace(/^data:image\/png/, 'data:application/octet-stream');
+function proceedImage(event){
+    let imageData = getCanvas.toDataURL("image/png").replace("image/png","image/octet-stream");
     const downloadLink = document.querySelector('.controls__download-picture');
     downloadLink.setAttribute('download', 'image.png')
-    downloadLink.setAttribute('href', newData);
+    downloadLink.setAttribute('href', imageData);
 }
-
-
-
 
 function checkFile(event) {
     let inputFile = event.target.files[0];
@@ -110,23 +111,22 @@ function copyJson(){
 
     // Для хранения в JSON
     let json = JSON.stringify(data);
-    
-
     copyToClipboard(json)
 }
 
 // Для дальнешей работы с JSON
 function htmlToJson(div){
     let tag = {};
-    tag['tagName']=div.tagName;
+    tag['tagName'] = div.tagName;
     tag['children'] = [];
-    for(let i = 0; i< div.children.length;i++){
+    for(let i = 0; i < div.children.length; i++){
        tag['children'].push(htmlToJson(div.children[i]));
     }
-    for(let i = 0; i< div.attributes.length;i++){
-       let attr= div.attributes[i];
-       tag['@'+attr.name] = attr.value;
+    for(let i = 0; i < div.attributes.length; i++){
+       let attr = div.attributes[i];
+       tag['@' + attr.name] = attr.value;
     }
+
     let json = JSON.stringify(data); 
     copyToClipboard(json)
 }
@@ -143,4 +143,4 @@ redactorForm.addEventListener('submit', updateBanner, false)
 inputFileEl.addEventListener('change', checkFile, false);
 copyHtmlEl.addEventListener('click', copyHtml, false);
 copyJsonEl.addEventListener('click', copyJson, false);
-downloadEl.addEventListener('click', proceedImage, false);
+downloadEl.addEventListener('click', proceedImage, true);
